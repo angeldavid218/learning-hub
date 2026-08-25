@@ -1,2 +1,82 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+  themes: agentlabs --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "agentlabs";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Surfaces — --bg / --panel / --panel2 */
+  --color-base-100: #0b0b10;
+  --color-base-200: #14141c;
+  --color-base-300: #181822;
+  --color-base-content: #f2f2f4;
+
+  /* Brand lime — --lime */
+  --color-primary: #d4ff4f;
+  --color-primary-content: #0b0b10;
+
+  /* Elevated panel / secondary chrome — --panel2 + muted */
+  --color-secondary: #2a2a34;
+  --color-secondary-content: #f2f2f4;
+
+  /* Alternate lime accent used in credentials / highlights */
+  --color-accent: #ccff00;
+  --color-accent-content: #0b0b10;
+
+  /* Neutral chrome — --panel + original muted */
+  --color-neutral: #14141c;
+  --color-neutral-content: #a2a2b0;
+
+  /* Semantic — from reference accents */
+  --color-info: #a2a2b0;
+  --color-info-content: #0b0b10;
+  --color-success: #7de28a;
+  --color-success-content: #0b0b10;
+  --color-warning: #e2ff7a;
+  --color-warning-content: #0b0b10;
+  --color-error: #ff5c5c;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* Brand tokens — use for custom CSS outside DaisyUI utilities */
+:root {
+  --brand-bg: #0b0b10;
+  --brand-panel: #14141c;
+  --brand-panel-2: #181822;
+  --brand-line: rgba(255, 255, 255, 0.09);
+  --brand-text: #f2f2f4;
+  --brand-muted: #a2a2b0;
+  --brand-dim: #6e6e7c;
+  --brand-lime: #d4ff4f;
+  --brand-lime-dim: rgba(212, 255, 79, 0.12);
+  --brand-lime-bright: #ccff00;
+  --brand-lime-soft: #e2ff7a;
+  --brand-red: #ff5c5c;
+  --brand-red-deep: #b0141c;
+  --brand-red-urgent: #e11d2a;
+  --brand-success: #7de28a;
+  --brand-coral: #ff6b60;
+
+  --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+::selection {
+  background: var(--brand-lime);
+  color: var(--brand-bg);
+}
