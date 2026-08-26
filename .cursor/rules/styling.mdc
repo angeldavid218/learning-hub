@@ -1,0 +1,23 @@
+---
+description: DaisyUI agentlabs theme and Agent Labs brand styling
+globs: "**/*.{css,tsx}"
+alwaysApply: false
+---
+
+# Styling
+
+- Theme: DaisyUI `agentlabs` only (`data-theme="agentlabs"` on `<html>`)
+- Prefer DaisyUI semantic utilities: `btn-primary`, `bg-base-100`, `text-base-content`, `border-base-300`
+- Brand accent is lime → `primary` / `accent`; errors → `error`
+- For custom CSS outside DaisyUI, use `--brand-*` tokens from `app/globals.css`
+- Do not hardcode hex colors in components when a theme/brand token exists
+- Do not invent parallel color systems or extra DaisyUI themes
+
+```tsx
+// ✅ GOOD
+<button className="btn btn-primary">Join</button>
+<p className="text-base-content/70">Muted copy</p>
+
+// ❌ BAD
+<button className="bg-[#d4ff4f] text-[#0b0b10]">Join</button>
+```

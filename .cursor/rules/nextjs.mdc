@@ -1,0 +1,51 @@
+---
+description: Next.js App Router conventions for pages, layouts, and API routes
+globs: app/**/*.{ts,tsx}, middleware.ts
+alwaysApply: false
+---
+
+# Next.js App Router
+
+## File conventions
+
+- `page.tsx` — route UI
+- `layout.tsx` — shared UI for a segment
+- `loading.tsx` / `error.tsx` / `not-found.tsx` — route UX states
+- Use route groups `(name)/` for layout organization without URL segments
+
+## Project layout
+
+```
+app/
+├── (routes)/
+│   ├── layout.tsx
+│   └── page.tsx
+├── api/**/route.ts
+├── layout.tsx
+├── page.tsx
+└── globals.css
+```
+
+## API routes
+
+```typescript
+// ✅ GOOD
+export async function GET(request: NextRequest) {
+  const page = request.nextUrl.searchParams.get("page") ?? "1";
+  return NextResponse.json({ page });
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    return NextResponse.json({ ok: true }, { status: 201 });
+  } catch {
+    return NextResponse.json({ error: "Failed" }, { status: 500 });
+  }
+}
+```
+
+## Metadata
+
+- Prefer static `export const metadata` when values are known
+- Use `generateMetadata` only when data depends on params/fetch
