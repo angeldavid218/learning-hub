@@ -1,0 +1,18 @@
+---
+description: Agent Labs portal product domain, tiers, and sprint scope
+alwaysApply: true
+---
+
+# Agent Labs portal
+
+Learning portal for Agent Labs. Reference: https://theagentlabs.ai/portal/
+
+- Three student views by membership tier: **Essentials**, **Edit**, **Studio**. Each view shows a different catalog (upgrade, not cosmetic).
+- Content tree: **Challenge → Cohort → Module → Lesson → Content** (`video` | `file` | `text` | `link`). Students join **cohorts**.
+- Gating: cohort membership + tier + drip window. Track progress in `lesson_progress`; drip mail via cron + `email_events` + Resend.
+- **No videos in v1.** Structure first, AJ feedback, then Vimeo.
+- Unlock pacing is undecided — store `unlock_offset` (or equivalent), do not hard-code a weekly vs 40-day rule.
+- UI: responsive; DaisyUI `agentlabs` only. Admin portal is in scope.
+- Deadline: 29 Sep 2026.
+
+Details: `docs/overview.md`, `docs/architecture.md`, `docs/onboarding.md`.
