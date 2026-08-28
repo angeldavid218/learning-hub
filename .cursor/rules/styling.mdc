@@ -1,23 +1,26 @@
 ---
-description: DaisyUI agentlabs theme and Agent Labs brand styling
+description: DaisyUI multi-brand themes (agentlabs | timerich)
 globs: "**/*.{css,tsx}"
 alwaysApply: false
 ---
 
 # Styling
 
-- Theme: DaisyUI `agentlabs` only (`data-theme="agentlabs"` on `<html>`)
+- Themes: DaisyUI `agentlabs` and `timerich` only — set `data-theme` from the resolved brand (`brand.theme`), never hardcode one brand in shared components
 - Prefer DaisyUI semantic utilities: `btn-primary`, `bg-base-100`, `text-base-content`, `border-base-300`
-- Brand accent is lime → `primary` / `accent`; errors → `error`
-- For custom CSS outside DaisyUI, use `--brand-*` tokens from `app/globals.css`
+- Agent Labs accent is lime → `primary` / `accent`; Time Rich tokens live under the `timerich` theme once defined in `app/globals.css`
+- Errors → `error`
+- For custom CSS outside DaisyUI, use theme/`--brand-*` tokens from `app/globals.css` (or brand-specific variables under each DaisyUI theme block)
 - Do not hardcode hex colors in components when a theme/brand token exists
-- Do not invent parallel color systems or extra DaisyUI themes
+- Do not invent themes beyond `agentlabs` and `timerich`
 
 ```tsx
 // ✅ GOOD
+<html data-theme={brand.theme}>
 <button className="btn btn-primary">Join</button>
 <p className="text-base-content/70">Muted copy</p>
 
 // ❌ BAD
+<html data-theme="agentlabs"> {/* hardcoded in shared root when brand varies */}
 <button className="bg-[#d4ff4f] text-[#0b0b10]">Join</button>
 ```
