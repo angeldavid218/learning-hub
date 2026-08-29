@@ -3,9 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { ensureProfile } from "@/src/auth/profile";
 import { createServerSupabaseClient } from "@/src/auth/supabase-server";
-
-const safeNextPath = (value: string | null): string =>
-  value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+import { safeNextPath } from "@/src/auth/utils";
 
 /**
  * Landing point for Supabase email links — confirmation and password reset.

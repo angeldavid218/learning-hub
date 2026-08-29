@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { ensureProfile } from "./profile";
 import { getRequestOrigin } from "./request";
 import { createServerSupabaseClient } from "./supabase-server";
+import { safeNextPath } from "./utils";
 
 export interface AuthFormState {
   error?: string;
@@ -17,13 +18,6 @@ const readString = (formData: FormData, field: string): string => {
   const value = formData.get(field);
   return typeof value === "string" ? value.trim() : "";
 };
-
-/**
- * Only allow relative, single-slash paths through as post-login destinations.
- * Anything else lets an attacker use our login form as an open redirect.
- */
-const safeNextPath = (value: string): string =>
-  value.startsWith("/") && !value.startsWith("//") ? value : "/";
 
 export const signIn = async (
   _prevState: AuthFormState,

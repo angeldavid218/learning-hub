@@ -2,18 +2,13 @@ import { type Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { getSessionUser } from "@/src/auth/session";
+import { readParam, safeNextPath } from "@/src/auth/utils";
 
 import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = {
   title: "Sign in",
 };
-
-const readParam = (value: string | string[] | undefined): string | undefined =>
-  Array.isArray(value) ? value[0] : value;
-
-const safeNextPath = (value: string | undefined): string =>
-  value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
 
 export default async function LoginPage({
   searchParams,
