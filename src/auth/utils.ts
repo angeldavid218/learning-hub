@@ -15,7 +15,9 @@
  * (`searchParams.get()`, an optional param) without pre-checking it.
  */
 export const safeNextPath = (value: string | null | undefined): string =>
-  value && value.startsWith("/") && !value.startsWith("//") ? value : "/";
+  value && value.startsWith("/") && !value.startsWith("//")
+    ? value
+    : "/lessons/your-first-7-days";
 
 /**
  * Collapse a Next.js search param to a single value.

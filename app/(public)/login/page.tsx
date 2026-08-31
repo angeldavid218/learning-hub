@@ -14,7 +14,7 @@ export default async function LoginPage({
   searchParams,
 }: PageProps<"/login">) {
   if (await getSessionUser()) {
-    redirect("/");
+    redirect("/lessons/your-first-7-days");
   }
 
   const params = await searchParams;

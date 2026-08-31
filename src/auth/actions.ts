@@ -126,7 +126,7 @@ export const updatePassword = async (
     return { error: error.message };
   }
 
-  redirect("/");
+  redirect("/lessons/your-first-7-days");
 };
 
 export const signOut = async (): Promise<void> => {
