@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap");
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  themes: agentlabs --default;
+  themes: agentlabs --default, timerich;
 }
 
 @plugin "daisyui/theme" {
@@ -52,6 +53,53 @@
   --noise: 0;
 }
 
+@plugin "daisyui/theme" {
+  name: "timerich";
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Surfaces — void / panel / raise (timerich.ai/brand v5.0) */
+  --color-base-100: #2c3422;
+  --color-base-200: #353e29;
+  --color-base-300: #455038;
+  --color-base-content: #fffceb;
+
+  /* Pastel green — accent, stop, primary CTA fill */
+  --color-primary: #cceea0;
+  --color-primary-content: #333a28;
+
+  /* Elevated panel chrome */
+  --color-secondary: #455038;
+  --color-secondary-content: #fffceb;
+
+  /* Moss — readable green accent on dark */
+  --color-accent: #67762e;
+  --color-accent-content: #fffceb;
+
+  /* Neutral chrome */
+  --color-neutral: #353e29;
+  --color-neutral-content: #c3c8ac;
+
+  /* Semantic — sage/moss/clay from brand bible */
+  --color-info: #9da486;
+  --color-info-content: #2c3422;
+  --color-success: #67762e;
+  --color-success-content: #fffceb;
+  --color-warning: #edf7c6;
+  --color-warning-content: #333a28;
+  --color-error: #e39377;
+  --color-error-content: #2c3422;
+
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
 /* Brand tokens — use for custom CSS outside DaisyUI utilities */
 :root {
   --brand-bg: #0b0b10;
@@ -76,7 +124,50 @@
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+[data-theme="timerich"] {
+  --brand-bg: #2c3422;
+  --brand-panel: #353e29;
+  --brand-panel-2: #455038;
+  --brand-line: rgba(255, 252, 235, 0.11);
+  --brand-text: #fffceb;
+  --brand-muted: #c3c8ac;
+  --brand-dim: #9da486;
+  --brand-lime: #cceea0;
+  --brand-lime-dim: rgba(204, 238, 160, 0.14);
+  --brand-red: #e39377;
+  --brand-red-deep: #a8492f;
+  --brand-red-urgent: #c4634a;
+  --brand-green: #424b36;
+  --brand-green-deep: #333a28;
+  --brand-green-mid: #67762e;
+  --brand-pop: #cceea0;
+  --brand-cream: #fffceb;
+  --brand-sage: #dcdebf;
+  --brand-sage-light: #e9ead5;
+  --brand-sage-dark: #c3c8ac;
+  --brand-lime-readable: #67762e;
+  --brand-lime-wash: #edf7c6;
+  --brand-moss: #67762e;
+  --brand-moss-dim: rgba(103, 118, 46, 0.3);
+  --brand-clay: #e39377;
+  --brand-clay-deep: #a8492f;
+
+  --font-display: "Space Grotesk", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    sans-serif;
+}
+
 ::selection {
   background: var(--brand-lime);
   color: var(--brand-bg);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
 }
