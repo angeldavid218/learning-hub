@@ -20,3 +20,11 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). Full setup and conventions are in the onboarding doc.
+
+### Local DB seed + admin access
+
+```bash
+npm run db:seed
+```
+
+Seeds both brands and their Essentials / Edit / Studio tiers (idempotent). To open the admin portal locally, set `SEED_ADMIN_USER_ID` (or `SEED_ADMIN_EMAIL`) after signing up once, then re-run the seed — details in [Developer onboarding](./docs/onboarding.md#promote-yourself-to-brand-admin).

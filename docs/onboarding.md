@@ -51,6 +51,44 @@ RESEND_API_KEY=
 # Optional local brand routing (JSON Host → brand id)
 # BRAND_HOST_MAP={"localhost:3000":"agentlabs","timerich.local:3000":"timerich"}
 # VIMEO_*                     # not needed until video work starts
+
+# Local admin promotion (optional — used by npm run db:seed)
+# SEED_ADMIN_USER_ID=         # profiles.id / auth.users.id UUID after you sign up
+# SEED_ADMIN_EMAIL=           # alternative: look up auth.users by email
+# SEED_ADMIN_BRAND_IDS=agentlabs,timerich   # default: both brands
+```
+
+## Seed reference data + local admin
+
+```bash
+npm run db:seed
+```
+
+Idempotent. Ensures both brands (`agentlabs`, `timerich`), three membership tiers each (`essentials` / `edit` / `studio`), and — when you set an env var — a `brand_admins` row so you can open the admin portal.
+
+### Promote yourself to brand admin
+
+Admin access is a row in `brand_admins` for the **current brand**, not a global profile flag. Do not hard-code a fake UUID; use a user you can actually sign in as.
+
+1. Sign up / sign in locally once so `ensureProfile` creates your `profiles` row.
+2. Put your Auth user id in `.env` (Supabase Dashboard → Authentication → Users, or the `id` on your session):
+
+   ```bash
+   SEED_ADMIN_USER_ID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   ```
+
+   Or set `SEED_ADMIN_EMAIL=you@example.com` (resolved via `auth.users`).
+3. Re-run `npm run db:seed`. You should see a log line confirming `brand_admins` for your profile on `agentlabs` and `timerich` (or the brands in `SEED_ADMIN_BRAND_IDS`).
+
+**Manual SQL** (same effect, if you prefer not to use the env vars):
+
+```sql
+-- Replace the UUID with your auth.users / profiles.id
+insert into brand_admins (profile_id, brand_id)
+values
+  ('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'agentlabs'),
+  ('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'timerich')
+on conflict do nothing;
 ```
 
 ## Where to put code
